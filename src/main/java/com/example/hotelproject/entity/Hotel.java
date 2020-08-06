@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.cloudinary.Transformation;
@@ -18,6 +20,10 @@ public class Hotel {
     private long id;
     private String name;
 	private String description;
+
+	@ManyToOne
+    @JoinColumn(name = "prefecture_id")
+    private Prefecture prefecture;
 
 	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Photo photo;

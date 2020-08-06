@@ -1,0 +1,33 @@
+<div layout:decorate="layout">
+	<div layout:fragment="contents">
+		<h1 th:text="${title}">Review Index</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名前</th>
+					<th>評価</th>
+					<th>本文</th>
+					<th>ホテル</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="review:${reviews}" th:object="${review}">
+					<td th:text="*{id}"></td>
+					<td th:text="*{name}"></td>
+					<td th:text="*{rating}"></td>
+					<td th:text="*{body}"></td>
+					<td th:text="*{hotel.name}"></td>
+					<td><a class="btn btn-secondary btn-xs" th:href="@{/hotels/{hotel_id}/reviews/{id}(hotel_id=*{hotel.id},id=*{id})}">参照</a></td>
+					<td><a class="btn btn-secondary btn-xs" th:href="@{/hotels/{hotel_id}/reviews/{id}/edit(hotel_id=*{hotel.id},id=*{id})}">編集</a></td>
+					<td>
+						<form th:action="@{/hotels/{hotel_id}/reviews/{id}(hotel_id=*{hotel.id},id=*{id})}" th:method="delete">
+							<input class="btn btn-secondary btn-xs" type="submit" value="削除" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn btn-secondary" th:href="@{/hotels/{hotel_id}/reviews/new(hotel_id=${hotel.id})}">新規作成</a>
+	</div>
+</div>

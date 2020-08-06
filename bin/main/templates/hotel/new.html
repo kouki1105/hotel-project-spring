@@ -1,7 +1,7 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
 	  <h1 th:text="${title}">New Hotel</h1>
-	  <form th:action="@{/hotels}" th:method="post">
+	  <form th:action="@{/hotels}" th:method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		  <label class="control-label">名前</label>
 		  <input class="form-control" type="text" name="name" />
