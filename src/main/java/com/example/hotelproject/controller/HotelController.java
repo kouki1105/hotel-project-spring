@@ -12,6 +12,7 @@ import com.example.hotelproject.entity.PhotoUpload;
 import com.example.hotelproject.form.HotelForm;
 import com.example.hotelproject.repository.HotelRepository;
 import com.example.hotelproject.repository.PhotoRepository;
+import com.example.hotelproject.repository.PrefectureRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,8 @@ public class HotelController {
     @Autowired
     private PhotoRepository photoRepository;
 
+    @Autowired
+    private PrefectureRepository prefectureRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -54,6 +57,7 @@ public class HotelController {
         Hotel hotel = new Hotel();
         hotel.setName(hotelForm.getName());
         hotel.setDescription(hotelForm.getDescription());
+        hotel.setPrefecture(prefectureRepository.findById(hotelForm.getPrefectureId()).orElse(null));
         PhotoUpload photoUpload = new PhotoUpload();
         Map<?, ?> uploadResult = null;
         if (hotelForm.getFile() != null && !hotelForm.getFile().isEmpty()) {

@@ -62,4 +62,12 @@ public class Hotel {
                 new Transformation<>().width(150).height(150).crop("thumb")
             ).generate(photo.getUpload().getPublicId());
     }
+
+	public Prefecture getPrefecture() {
+		return prefecture;
+	}
+
+	public void setPrefecture(Prefecture prefecture) {
+		this.prefecture = prefecture;
+	}
 }

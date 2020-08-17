@@ -2,7 +2,9 @@ package com.example.hotelproject.controller;
 
 import java.util.List;
 
+import com.example.hotelproject.entity.Hotel;
 import com.example.hotelproject.entity.Prefecture;
+import com.example.hotelproject.repository.HotelRepository;
 import com.example.hotelproject.repository.PrefectureRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class PrefectureController {
 	@Autowired
     private PrefectureRepository prefectureRepository;
 
+    @Autowired
+    private HotelRepository hotelRepository;
+
 	@GetMapping
     public String index(Model model) {
         List<Prefecture> prefectures = prefectureRepository.findAll();
@@ -30,7 +35,9 @@ public class PrefectureController {
 	@GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
         Prefecture prefecture = prefectureRepository.findById(id).orElse(null);
+        List<Hotel> hotels = hotelRepository.findByPrefectureId(id);
         model.addAttribute("prefecture", prefecture);
+        model.addAttribute("hotels", hotels);
         model.addAttribute("title", "Show Prefecture");
         return "prefecture/show";
     }

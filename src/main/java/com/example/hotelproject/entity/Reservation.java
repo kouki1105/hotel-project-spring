@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Reservation {
 	@Id
@@ -16,7 +18,9 @@ public class Reservation {
     private long id;
 	private String name;
 	private String email;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
     private Long numOfPeople;
 

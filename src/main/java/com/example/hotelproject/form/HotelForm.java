@@ -7,6 +7,7 @@ public class HotelForm {
     private String name;
     private String description;
     private MultipartFile file;
+    private Long prefectureId;
 
     public String getName() {
         return name;
@@ -33,6 +34,14 @@ public class HotelForm {
     }
 
     public HotelForm() {
+    }
+
+    public Long getPrefectureId() {
+        return prefectureId;
+    }
+
+    public void setPrefectureId(Long prefectureId) {
+        this.prefectureId = prefectureId;
     }
 
 }
