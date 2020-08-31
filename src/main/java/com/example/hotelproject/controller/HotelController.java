@@ -9,6 +9,7 @@ import com.example.hotelproject.config.Singleton;
 import com.example.hotelproject.entity.Hotel;
 import com.example.hotelproject.entity.Photo;
 import com.example.hotelproject.entity.PhotoUpload;
+import com.example.hotelproject.entity.Prefecture;
 import com.example.hotelproject.form.HotelForm;
 import com.example.hotelproject.repository.HotelRepository;
 import com.example.hotelproject.repository.PhotoRepository;
@@ -95,7 +96,9 @@ public class HotelController {
 
     @PutMapping("{id}")
     public String update(@PathVariable Long id, @ModelAttribute Hotel hotel) {
-        hotel.setId(id);
+        hotelRepository.save(hotel);
+        Prefecture prefecture = prefectureRepository.findById(hotel.getPrefectureId()).orElse(null);
+        hotel.setPrefecture(prefecture);
         hotelRepository.save(hotel);
         return "redirect:/hotels";
     }

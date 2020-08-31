@@ -1,32 +1,18 @@
 <div layout:decorate="layout">
-    <div layout:fragment="contents">
-        <h1 th:text="${title}">Hotel Index</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>名前</th>
-                    <th>説明</th>
-                    <th>写真</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="hotel:${hotels}" th:object="${hotel}">
-                    <td th:text="*{id}"></td>
-                    <td th:text="*{name}"></td>
-					<td th:text="*{description}"></td>
-                    <td><img th:src="*{getThumbnailUrl()}" /></td>
-                    <td th:text="*{prefecture.name}"></td>
-                    <td><a class="btn btn-secondary btn-xs" th:href="@{/hotels/{id}(id=*{id})}">参照</a></td>
-                    <td><a class="btn btn-secondary btn-xs" th:href="@{/hotels/{id}/edit(id=*{id})}">編集</a></td>
-                    <td>
-                        <form th:action="@{/hotels/{id}(id=*{id})}" th:method="delete">
-                            <input class="btn btn-secondary btn-xs" type="submit" value="削除" />
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a class="btn btn-secondary" href="/hotels/new">新規作成</a>
-    </div>
+	<div layout:fragment="contents">
+		<h1 th:text="${title}">Hotel Index</h1>
+		<div class="row">
+			<div class="col-md-3 my-2" th:each="hotel:${hotels}" th:object="${hotel}">
+				<div class="card h-100">
+					<img th:src="*{getPhotoUrl()}" class="card-img-top" alt="ホテルの写真">
+					<div class="card-body">
+						<h5 th:text="*{name}" class="card-title"></h5>
+						<p th:text="*{description}" class="card-text"></p>
+					</div>
+					<a class="btn btn-outline-info stretched-link" th:href="@{/hotels/{id}(id=*{id})}">ホテル詳細</a>
+				</div>
+			</div>
+		</div>
+		<a class="btn btn-secondary" href="/hotels/new">新規作成</a>
+	</div>
 </div>

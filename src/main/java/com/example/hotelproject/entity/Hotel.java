@@ -20,6 +20,7 @@ public class Hotel {
     private long id;
     private String name;
 	private String description;
+	private Long prefecture_id;
 
 	@ManyToOne
     @JoinColumn(name = "prefecture_id")
@@ -69,5 +70,13 @@ public class Hotel {
 
 	public void setPrefecture(Prefecture prefecture) {
 		this.prefecture = prefecture;
+	}
+
+	public Long getPrefectureId() {
+		return prefecture_id;
+	}
+
+	public void setPrefectureId(Long prefecture_id) {
+		this.prefecture_id = prefecture_id;
 	}
 }
