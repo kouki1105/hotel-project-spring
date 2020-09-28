@@ -1,19 +1,15 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
 		<h1 th:text="${title}"></h1>
-		<div th:object="${contact}">
-			<div>
-				<label>名前：</label>
-				<p th:text="*{name}"></p>
-			</div>
-			<div>
-				<label>メールアドレス：</label>
-				<p th:text="*{email}"></p>
-			</div>
-			<div>
-				<label>お問い合わせ内容：</label>
-				<p th:text="*{body}"></p>
-			</div>
+		<div th:object="${contact}" class="card mt-3">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item"><b>お名前：　</b><span th:text="*{name}"></span></li>
+				<li class="list-group-item"><b>メールアドレス：　</b><span th:text="*{email}"></span></li>
+				<li class="list-group-item"><b>お問い合わせ内容：　</b><span th:text="*{body}"></span></li>
+			</ul>
+		</div>
+		<div class="d-flex justify-content-around mt-3">
+			<a href="/hotels" class="btn btn-outline-info">ホテル一覧</a>
 		</div>
 	</div>
 </div>

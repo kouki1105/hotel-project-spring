@@ -1,9 +1,9 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
-		<h1 th:text="${title}">New Reservation</h1>
+		<h1><span th:text="*{hotel.name}"></span> を予約する</h1>
 		<form th:action="@{/hotels/{hotel_id}/reservations/(hotel_id=*{hotel.id})}" th:method="post">
 			<div class="form-group">
-				<label class="control-label">名前</label>
+				<label class="control-label">お名前</label>
 				<input class="form-control" type="text" name="name" />
 			</div>
 			<div class="form-group">
@@ -23,10 +23,11 @@
 				<input class="form-control" type="number" name="numOfPeople" />
 			</div>
 			<input class="form-control" type="hidden" name="hotelId" th:value="${hotel.id}" />
-			<button class="btn btn-secondary" type="submit">作成</button>
+			<button class="btn btn-outline-success" type="submit">作成</button>
 		</form>
-		<div class="pull-right">
-			<a class="btn btn-link" href="/hotels/{hotel_id}/reservations(hotel_id=${hotel.id})">一覧画面へ</a>
+		<div class="d-flex justify-content-around mt-3">
+			<a th:href="@{/hotels/{hotel_id}(hotel_id=${hotel.id})}" class="btn btn-outline-info"><span th:text="*{hotel.name}"></span> 詳細</a>
+			<a href="/hotels" class="btn btn-outline-info">ホテル一覧</a>
 		</div>
 	</div>
 </div>

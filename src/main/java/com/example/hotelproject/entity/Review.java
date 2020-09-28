@@ -1,11 +1,14 @@
 package com.example.hotelproject.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Review {
@@ -14,7 +17,8 @@ public class Review {
     private long id;
 	private String name;
 	private Double rating;
-    private String body;
+	private String body;
+	private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
@@ -58,5 +62,18 @@ public class Review {
 
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
+	}
+
+	@PrePersist
+    public void onPrePersist() {
+        setCreatedAt(new Date());
+    }
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 }

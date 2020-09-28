@@ -9,11 +9,12 @@ import com.example.hotelproject.config.Singleton;
 import com.example.hotelproject.entity.Hotel;
 import com.example.hotelproject.entity.Photo;
 import com.example.hotelproject.entity.PhotoUpload;
-import com.example.hotelproject.entity.Prefecture;
+import com.example.hotelproject.entity.Review;
 import com.example.hotelproject.form.HotelForm;
 import com.example.hotelproject.repository.HotelRepository;
 import com.example.hotelproject.repository.PhotoRepository;
 import com.example.hotelproject.repository.PrefectureRepository;
+import com.example.hotelproject.repository.ReviewRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,9 @@ public class HotelController {
 
     @Autowired
     private PrefectureRepository prefectureRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -97,8 +101,8 @@ public class HotelController {
     @PutMapping("{id}")
     public String update(@PathVariable Long id, @ModelAttribute Hotel hotel) {
         hotelRepository.save(hotel);
-        Prefecture prefecture = prefectureRepository.findById(hotel.getPrefectureId()).orElse(null);
-        hotel.setPrefecture(prefecture);
+        // Prefecture prefecture = prefectureRepository.findById(hotel.getPrefectureId()).orElse(null);
+        // hotel.setPrefecture(prefecture);
         hotelRepository.save(hotel);
         return "redirect:/hotels";
     }
@@ -106,7 +110,9 @@ public class HotelController {
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
         Hotel hotel = hotelRepository.findById(id).orElse(null);
+        List<Review> reviews = reviewRepository.findFirst6ByHotelIdOrderByIdDesc(id);
         model.addAttribute("hotel", hotel);
+        model.addAttribute("reviews", reviews);
         model.addAttribute("title", "Show Hotel");
         return "hotel/show";
     }

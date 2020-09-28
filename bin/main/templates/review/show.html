@@ -1,33 +1,20 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
-		<h1 th:text="${title}">Show Review</h1>
-		<div th:object="${review}">
-			<div>
-				<label>ID</label>
-				<p th:text="*{id}"></p>
+		<h1>レビュー詳細</h1>
+		<div th:object="${review}" class="card h-100">
+			<div class="card-header d-flex justify-content-between align-items-center">
+				<div><small>評価 : </small><span th:text="*{rating}" class="font-weight-bold"></span></div>
+				<small>投稿日 : <span th:text="*{#dates.format(createdAt, 'yyyy/MM/dd HH:mm')}"></span></small>
 			</div>
-			<div>
-				<label>名前</label>
-				<p th:text="*{name}"></p>
-			</div>
-			<div>
-				<label>評価</label>
-				<p th:text="*{rating}"></p>
-			</div>
-			<div>
-				<label>本文</label>
-				<p th:text="*{body}"></p>
-			</div>
-			<div>
-				<label>ホテル</label>
-				<p th:text="*{hotel.name}"></p>
+			<div class="card-body">
+				<p class="card-title mb-2"><span th:text="*{name}"></span></p>
+				<p th:text="*{body}" class="card-text font-weight-bold"></p>
 			</div>
 		</div>
-		<div>
-			<a class="btn btn-secondary" th:href="@{/hotels/{hotel_id}/reviews/{id}/edit(hotel_id=*{hotel.id},id=*{id})}">編集</a>
-		</div>
-		<div class="pull-right">
-			<a class="btn btn-link" href="/hotels">一覧画面へ</a>
+		<div class="d-flex justify-content-around mt-3">
+			<a th:href="@{/hotels/{hotel_id}/reviews(hotel_id=*{hotel.id})}" class="btn btn-outline-info"><span th:text="*{hotel.name}"></span> レビュー一覧</a>
+			<a th:href="@{/hotels/{hotel_id}(hotel_id=*{hotel.id})}" class="btn btn-outline-info"><span th:text="*{hotel.name}"></span> 詳細</a>
+			<a href="/hotels" class="btn btn-outline-info">ホテル一覧</a>
 		</div>
 	</div>
 </div>

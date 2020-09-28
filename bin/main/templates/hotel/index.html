@@ -8,11 +8,11 @@
 					<div class="card-body">
 						<h5 th:text="*{name}" class="card-title"></h5>
 						<p th:text="*{description}" class="card-text"></p>
+						<!-- <p th:text="*{prefecture.name}" class="card-text"></p> -->
 					</div>
 					<a class="btn btn-outline-info stretched-link" th:href="@{/hotels/{id}(id=*{id})}">ホテル詳細</a>
 				</div>
 			</div>
 		</div>
-		<a class="btn btn-secondary" href="/hotels/new">新規作成</a>
 	</div>
 </div>

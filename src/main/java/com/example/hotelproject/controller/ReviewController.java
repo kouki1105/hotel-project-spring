@@ -29,7 +29,7 @@ public class ReviewController {
 
     @GetMapping
     public String index(@PathVariable Long hotel_id, Model model) {
-        List<Review> reviews = reviewRepository.findByHotelId(hotel_id);
+        List<Review> reviews = reviewRepository.findByHotelIdOrderByIdDesc(hotel_id);
         Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
         model.addAttribute("reviews", reviews);
         model.addAttribute("hotel", hotel);

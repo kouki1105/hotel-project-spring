@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	List<Review> findByHotelId(Long hotel_id);
+	List<Review> findByHotelIdOrderByIdDesc(Long hotel_id);
+	List<Review> findFirst6ByHotelIdOrderByIdDesc(Long hotel_id);
 }
