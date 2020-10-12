@@ -1,6 +1,11 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
-		<h1 th:text="${title}">Hotel Index</h1>
+		<div th:if="${#strings.isEmpty(queryName)}">
+			<h1 th:text="${title}"></h1>
+		</div>
+		<div th:unless="${#strings.isEmpty(queryName)}">
+			<h1>「<span th:text="${queryName}"></span>」の検索結果</h1>
+		</div>
 		<div class="row">
 			<div class="col-md-3 my-2" th:each="hotel:${hotels}" th:object="${hotel}">
 				<div class="card h-100">

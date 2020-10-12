@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 	List<Hotel> findByPrefectureId(Long prefecture_id);
+	List<Hotel> findByNameContaining(String name);
 }

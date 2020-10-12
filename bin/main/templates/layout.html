@@ -20,10 +20,14 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div id="menu" class="collapse navbar-collapse">
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto mr-sm-2">
 						<li class="nav-item"><a href="/" class="nav-link">トップページ</a></li>
 						<li class="nav-item"><a href="/contacts/new" class="nav-link">お問い合わせ</a></li>
 					</ul>
+					<form class="form-inline" action="/hotels">
+						<input class="form-control mr-sm-2" type="text" name="name" placeholder="ホテル名">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+					</form>
 				</div>
 			</div>
 		</header>
