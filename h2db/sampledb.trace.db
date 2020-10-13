@@ -438,3 +438,11 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 82 more
+2020-10-12 17:23:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"
+Data conversion error converting "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."HOTEL" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PREFECTURE_ID"=?  WHERE "ID"=? [22018-200]
+2020-10-12 17:23:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"
+Data conversion error converting "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"; SQL statement:
+UPDATE "PUBLIC"."HOTEL" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PREFECTURE_ID"=?  WHERE "ID"=? [22018-200]

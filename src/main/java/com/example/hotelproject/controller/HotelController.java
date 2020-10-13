@@ -9,7 +9,6 @@ import com.example.hotelproject.config.Singleton;
 import com.example.hotelproject.entity.Hotel;
 import com.example.hotelproject.entity.Photo;
 import com.example.hotelproject.entity.PhotoUpload;
-import com.example.hotelproject.entity.Prefecture;
 import com.example.hotelproject.entity.Review;
 import com.example.hotelproject.form.HotelForm;
 import com.example.hotelproject.repository.HotelRepository;
@@ -20,12 +19,10 @@ import com.example.hotelproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,7 +46,7 @@ public class HotelController {
 		List<Hotel> hotels = hotelRepository.findByNameContaining(name);
 		model.addAttribute("queryName", name);
 		model.addAttribute("hotels", hotels);
-		model.addAttribute("title", "Hotel Index");
+		model.addAttribute("title", "ホテル一覧");
 		return "hotel/index";
 	}
 	
@@ -92,37 +89,12 @@ public class HotelController {
 		return "redirect:/hotels";
 	}
 
-	@GetMapping("{id}/edit")
-	public String edit(@PathVariable Long id, Model model) {
-		Hotel hotel = hotelRepository.findById(id).orElse(null);
-		model.addAttribute("hotel", hotel);
-		model.addAttribute("title", "Edit Hotel");
-		return "hotel/edit";
-	}
-
-	@PutMapping("{id}")
-	public String update(@PathVariable Long id, @ModelAttribute Hotel hotel, @RequestParam Long prefectureId) {
-		// hotelRepository.save(hotel);
-		// System.out.println(ReflectionToStringBuilder.toString(prefectureId));
-		Prefecture prefecture = prefectureRepository.findById(prefectureId).orElse(null);
-		hotel.setPrefecture(prefecture);
-		hotelRepository.save(hotel);
-		return "redirect:/hotels";
-	}
-
 	@GetMapping("{id}")
 	public String show(@PathVariable Long id, Model model) {
 		Hotel hotel = hotelRepository.findById(id).orElse(null);
 		List<Review> reviews = reviewRepository.findFirst6ByHotelIdOrderByIdDesc(id);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("reviews", reviews);
-		model.addAttribute("title", "Show Hotel");
 		return "hotel/show";
-	}
-
-	@DeleteMapping("{id}")
-	public String destroy(@PathVariable Long id) {
-		hotelRepository.deleteById(id);
-		return "redirect:/hotels";
 	}
 }

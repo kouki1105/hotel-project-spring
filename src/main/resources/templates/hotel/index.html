@@ -12,8 +12,8 @@
 					<img th:src="*{getPhotoUrl()}" class="card-img-top" alt="ホテルの写真">
 					<div class="card-body">
 						<h5 th:text="*{name}" class="card-title"></h5>
+						<p class="card-text">所在地：<span th:text="*{prefecture.name}"></span></p>
 						<p th:text="*{description}" class="card-text"></p>
-						<!-- <p th:text="*{prefecture.name}" class="card-text"></p> -->
 					</div>
 					<a class="btn btn-outline-info stretched-link" th:href="@{/hotels/{id}(id=*{id})}">ホテル詳細</a>
 				</div>

@@ -1,0 +1,3 @@
+<div th:each="prefecture:${prefectures}" th:object="${prefecture}">
+	<a th:text="*{name}" th:href="@{/prefectures/{id}(id=*{id})}"></a>
+</div>
