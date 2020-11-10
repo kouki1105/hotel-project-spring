@@ -15,19 +15,22 @@ import com.example.hotelproject.config.Singleton;
 
 @Entity
 public class Hotel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String name;
 	private String description;
 	// private Long prefecture_id;
 
 	@ManyToOne
-    @JoinColumn(name = "prefecture_id")
-    private Prefecture prefecture;
+	@JoinColumn(name = "prefecture_id")
+	private Prefecture prefecture;
 
 	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Photo photo;
+	private Photo photo;
+
+	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Equipment equipment;
 	
 	public long getId() {
 		return id;
@@ -47,22 +50,22 @@ public class Hotel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    public Hotel() {};
-	public Hotel(String name, String description) {
-		this.name = name;
-		this.description = description;
-	};
+	public Hotel() {};
+	// public Hotel(String name, String description) {
+	// 	this.name = name;
+	// 	this.description = description;
+	// };
 
 	public String getPhotoUrl() {
-        return Singleton.getCloudinary().url().generate(photo.getUpload().getPublicId());
-    }
+		return Singleton.getCloudinary().url().generate(photo.getUpload().getPublicId());
+	}
 
-    public String getThumbnailUrl() {
-        return Singleton.getCloudinary().url()
-            .transformation(
-                new Transformation<>().width(150).height(150).crop("thumb")
-            ).generate(photo.getUpload().getPublicId());
-    }
+	public String getThumbnailUrl() {
+		return Singleton.getCloudinary().url()
+			.transformation(
+				new Transformation<>().width(150).height(150).crop("thumb")
+			).generate(photo.getUpload().getPublicId());
+	}
 
 	public Prefecture getPrefecture() {
 		return prefecture;

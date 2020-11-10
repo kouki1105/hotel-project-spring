@@ -446,3 +446,27 @@ UPDATE "PUBLIC"."HOTEL" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PREFECTURE_ID"=?
 org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"
 Data conversion error converting "'' (HOTEL: ""PREFECTURE_ID"" BIGINT)"; SQL statement:
 UPDATE "PUBLIC"."HOTEL" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PREFECTURE_ID"=?  WHERE "ID"=? [22018-200]
+2020-11-05 14:45:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"
+Data conversion error converting "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]
+2020-11-05 14:45:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"
+Data conversion error converting "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]
+2020-11-05 14:46:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"
+Data conversion error converting "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]
+2020-11-05 14:46:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"
+Data conversion error converting "'' (EQUIPMENT: ""IDEA_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]
+2020-11-05 14:48:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'TURE' (EQUIPMENT: ""HOT_SPRING"" BOOLEAN)"
+Data conversion error converting "'TURE' (EQUIPMENT: ""HOT_SPRING"" BOOLEAN)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]
+2020-11-05 14:48:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'TURE' (EQUIPMENT: ""HOT_SPRING"" BOOLEAN)"
+Data conversion error converting "'TURE' (EQUIPMENT: ""HOT_SPRING"" BOOLEAN)"; SQL statement:
+INSERT INTO "PUBLIC"."EQUIPMENT"("ID","HOT_SPRING","OUTDOOR_BATH","PARKING","WIFI","IDEA_ID","HOTEL_ID")VALUES(?,?,?,?,?,?,?) [22018-200]

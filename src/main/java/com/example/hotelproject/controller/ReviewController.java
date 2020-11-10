@@ -22,69 +22,69 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hotels/{hotel_id}/reviews")
 public class ReviewController {
 	@Autowired
-    private ReviewRepository reviewRepository;
+	private ReviewRepository reviewRepository;
 
-    @Autowired
-    private HotelRepository hotelRepository;
+	@Autowired
+	private HotelRepository hotelRepository;
 
-    @GetMapping
-    public String index(@PathVariable Long hotel_id, Model model) {
-        List<Review> reviews = reviewRepository.findByHotelIdOrderByIdDesc(hotel_id);
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "Review Index");
-        return "review/index";
-    }
+	@GetMapping
+	public String index(@PathVariable Long hotel_id, Model model) {
+		List<Review> reviews = reviewRepository.findByHotelIdOrderByIdDesc(hotel_id);
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "Review Index");
+		return "review/index";
+	}
 
-    @GetMapping("new")
-    public String newReview(@PathVariable Long hotel_id, Model model) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "New Review");
-        return "review/new";
-    }
+	@GetMapping("new")
+	public String newReview(@PathVariable Long hotel_id, Model model) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "New Review");
+		return "review/new";
+	}
 
-    @PostMapping
-    public String create(@PathVariable Long hotel_id, @ModelAttribute Review review) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        review.setHotel(hotel);
-        reviewRepository.save(review);
-        return "redirect:/hotels/{hotel_id}/reviews";
-    }
+	@PostMapping
+	public String create(@PathVariable Long hotel_id, @ModelAttribute Review review) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		review.setHotel(hotel);
+		reviewRepository.save(review);
+		return "redirect:/hotels/{hotel_id}/reviews";
+	}
 
-    @GetMapping("{id}/edit")
-    public String edit(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        Review review = reviewRepository.findById(id).orElse(null);
-        model.addAttribute("review", review);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "Edit Review");
-        return "review/edit";
-    }
+	@GetMapping("{id}/edit")
+	public String edit(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		Review review = reviewRepository.findById(id).orElse(null);
+		model.addAttribute("review", review);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "Edit Review");
+		return "review/edit";
+	}
 
-    @PutMapping("{id}")
-    public String update(@PathVariable Long hotel_id,@PathVariable Long id, @ModelAttribute Review review) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        review.setHotel(hotel);
-        review.setId(id);
-        hotelRepository.save(hotel);
-        return "redirect:/hotels/{hotel_id}/reviews";
-    }
+	@PutMapping("{id}")
+	public String update(@PathVariable Long hotel_id,@PathVariable Long id, @ModelAttribute Review review) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		review.setHotel(hotel);
+		review.setId(id);
+		hotelRepository.save(hotel);
+		return "redirect:/hotels/{hotel_id}/reviews";
+	}
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        Review review = reviewRepository.findById(id).orElse(null);
-        model.addAttribute("review", review);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "Show Review");
-        return "review/show";
-    }
+	@GetMapping("{id}")
+	public String show(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		Review review = reviewRepository.findById(id).orElse(null);
+		model.addAttribute("review", review);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "Show Review");
+		return "review/show";
+	}
 
-    @DeleteMapping("{id}")
-    public String destroy(@PathVariable Long id) {
-        reviewRepository.deleteById(id);
-        return "redirect:/hotels/{hotel_id}/reviews";
-    }
+	@DeleteMapping("{id}")
+	public String destroy(@PathVariable Long id) {
+		reviewRepository.deleteById(id);
+		return "redirect:/hotels/{hotel_id}/reviews";
+	}
 }

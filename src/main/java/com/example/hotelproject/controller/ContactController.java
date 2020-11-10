@@ -19,23 +19,23 @@ public class ContactController {
 	private ContactRepository contactRepository;
 	
 	@GetMapping("new")
-    public String newIdea(Model model) {
-        model.addAttribute("title", "お問い合わせ");
-        return "contact/new";
-    }
+	public String newIdea(Model model) {
+		model.addAttribute("title", "お問い合わせ");
+		return "contact/new";
+	}
 
-    @PostMapping
-    public String create(@ModelAttribute Contact contact) {
-        contactRepository.save(contact);
-        return "redirect:/contacts/" + contact.getId();
-    }
+	@PostMapping
+	public String create(@ModelAttribute Contact contact) {
+		contactRepository.save(contact);
+		return "redirect:/contacts/" + contact.getId();
+	}
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
-        Contact contact = contactRepository.findById(id).orElse(null);
-        model.addAttribute("contact", contact);
-        model.addAttribute("title", "お問い合わせありがとうございました。");
-        return "contact/show";
-    }
+	@GetMapping("{id}")
+	public String show(@PathVariable Long id, Model model) {
+		Contact contact = contactRepository.findById(id).orElse(null);
+		model.addAttribute("contact", contact);
+		model.addAttribute("title", "お問い合わせありがとうございました。");
+		return "contact/show";
+	}
 
 }

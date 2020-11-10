@@ -9,6 +9,10 @@
 				<div class="col-md-7">
 					<p class="h5">所在地：<span th:text="*{prefecture.name}"></span></p>
 					<p th:text="*{description}" class="h4"></p>
+					<div th:object="${equipment}">
+						<p th:if="${#bools.isTrue(parking)}">駐車場あり</p>
+						<p th:if="${#bools.isTrue(hotSpring)}">温泉あり</p>
+					</div>
 				</div>
 			</div>
 			<div class="d-flex justify-content-around mt-3">

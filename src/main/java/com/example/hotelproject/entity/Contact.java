@@ -47,9 +47,9 @@ public class Contact {
 		this.body = body;
 	}
 
-	public Contact(String name, String email, String body) {
-		this.name = name;
-		this.email = email;
-		this.body = body;
-	}
+	// public Contact(String name, String email, String body) {
+	// 	this.name = name;
+	// 	this.email = email;
+	// 	this.body = body;
+	// }
 }

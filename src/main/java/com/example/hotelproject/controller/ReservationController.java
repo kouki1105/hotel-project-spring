@@ -18,34 +18,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hotels/{hotel_id}/reservations")
 public class ReservationController {
 	@Autowired
-    private ReservationRepository reservationRepository;
+	private ReservationRepository reservationRepository;
 
-    @Autowired
-    private HotelRepository hotelRepository;
+	@Autowired
+	private HotelRepository hotelRepository;
 
-    @GetMapping("new")
-    public String newReservation(@PathVariable Long hotel_id, Model model) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "New Reservation");
-        return "reservation/new";
-    }
+	@GetMapping("new")
+	public String newReservation(@PathVariable Long hotel_id, Model model) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "New Reservation");
+		return "reservation/new";
+	}
 
-    @PostMapping
-    public String create(@PathVariable Long hotel_id, @ModelAttribute Reservation reservation) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        reservation.setHotel(hotel);
-        reservationRepository.save(reservation);
-        return "redirect:/hotels/{hotel_id}/reservations/" + reservation.getId();
-    }
+	@PostMapping
+	public String create(@PathVariable Long hotel_id, @ModelAttribute Reservation reservation) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		reservation.setHotel(hotel);
+		reservationRepository.save(reservation);
+		return "redirect:/hotels/{hotel_id}/reservations/" + reservation.getId();
+	}
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
-        Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
-        Reservation reservation = reservationRepository.findById(id).orElse(null);
-        model.addAttribute("reservation", reservation);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("title", "Show Reservation");
-        return "reservation/show";
-    }
+	@GetMapping("{id}")
+	public String show(@PathVariable Long hotel_id,@PathVariable Long id, Model model) {
+		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		Reservation reservation = reservationRepository.findById(id).orElse(null);
+		model.addAttribute("reservation", reservation);
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("title", "Show Reservation");
+		return "reservation/show";
+	}
 }

@@ -4,44 +4,44 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class HotelForm {
 
-    private String name;
-    private String description;
-    private MultipartFile file;
-    private Long prefectureId;
+	private String name;
+	private String description;
+	private MultipartFile file;
+	private Long prefectureId;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public MultipartFile getFile() {
-        return file;
-    }
+	public MultipartFile getFile() {
+		return file;
+	}
 
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
-    public HotelForm() {
-    }
+	public HotelForm() {
+	}
 
-    public Long getPrefectureId() {
-        return prefectureId;
-    }
+	public Long getPrefectureId() {
+		return prefectureId;
+	}
 
-    public void setPrefectureId(Long prefectureId) {
-        this.prefectureId = prefectureId;
-    }
+	public void setPrefectureId(Long prefectureId) {
+		this.prefectureId = prefectureId;
+	}
 
 }

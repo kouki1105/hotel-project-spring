@@ -6,11 +6,13 @@ import java.util.Map;
 
 import com.cloudinary.utils.ObjectUtils;
 import com.example.hotelproject.config.Singleton;
+import com.example.hotelproject.entity.Equipment;
 import com.example.hotelproject.entity.Hotel;
 import com.example.hotelproject.entity.Photo;
 import com.example.hotelproject.entity.PhotoUpload;
 import com.example.hotelproject.entity.Review;
 import com.example.hotelproject.form.HotelForm;
+import com.example.hotelproject.repository.EquipmentRepository;
 import com.example.hotelproject.repository.HotelRepository;
 import com.example.hotelproject.repository.PhotoRepository;
 import com.example.hotelproject.repository.PrefectureRepository;
@@ -41,6 +43,9 @@ public class HotelController {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
+	@Autowired
+	private EquipmentRepository equipmentRepository;
+
 	@GetMapping
 	public String index(Model model, @RequestParam(defaultValue = "") String name) {
 		List<Hotel> hotels = hotelRepository.findByNameContaining(name);
@@ -49,7 +54,7 @@ public class HotelController {
 		model.addAttribute("title", "ホテル一覧");
 		return "hotel/index";
 	}
-	
+
 	@GetMapping("new")
 	public String newHotel(Model model) {
 		model.addAttribute("title", "New Hotel");
@@ -93,8 +98,10 @@ public class HotelController {
 	public String show(@PathVariable Long id, Model model) {
 		Hotel hotel = hotelRepository.findById(id).orElse(null);
 		List<Review> reviews = reviewRepository.findFirst6ByHotelIdOrderByIdDesc(id);
+		List<Equipment> equipment = equipmentRepository.findByHotelId(id);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("equipment", equipment);
 		return "hotel/show";
 	}
 }

@@ -14,19 +14,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Reservation {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String name;
 	private String email;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
-    private Long numOfPeople;
+	private Long numOfPeople;
 
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+	@ManyToOne
+	@JoinColumn(name = "hotel_id")
+	private Hotel hotel;
 
 	public long getId() {
 		return id;

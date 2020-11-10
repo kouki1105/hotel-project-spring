@@ -13,16 +13,16 @@ import javax.persistence.PrePersist;
 @Entity
 public class Review {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String name;
 	private Double rating;
 	private String body;
 	private Date createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+	@ManyToOne
+	@JoinColumn(name = "hotel_id")
+	private Hotel hotel;
 
 	public long getId() {
 		return id;
@@ -65,9 +65,9 @@ public class Review {
 	}
 
 	@PrePersist
-    public void onPrePersist() {
-        setCreatedAt(new Date());
-    }
+	public void onPrePersist() {
+		setCreatedAt(new Date());
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;

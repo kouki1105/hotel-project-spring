@@ -18,27 +18,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/prefectures")
 public class PrefectureController {
 	@Autowired
-    private PrefectureRepository prefectureRepository;
+	private PrefectureRepository prefectureRepository;
 
-    @Autowired
-    private HotelRepository hotelRepository;
+	@Autowired
+	private HotelRepository hotelRepository;
 
 	@GetMapping
-    public String index(Model model) {
-        List<Prefecture> prefectures = prefectureRepository.findAll();
+	public String index(Model model) {
+		List<Prefecture> prefectures = prefectureRepository.findAll();
 
-        model.addAttribute("prefectures", prefectures);
-        model.addAttribute("title", "Prefecture Index");
-        return "prefecture/index";
+		model.addAttribute("prefectures", prefectures);
+		model.addAttribute("title", "Prefecture Index");
+		return "prefecture/index";
 	}
 
 	@GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
-        Prefecture prefecture = prefectureRepository.findById(id).orElse(null);
-        List<Hotel> hotels = hotelRepository.findByPrefectureId(id);
-        model.addAttribute("prefecture", prefecture);
-        model.addAttribute("hotels", hotels);
-        model.addAttribute("title", "Show Prefecture");
-        return "prefecture/show";
-    }
+	public String show(@PathVariable Long id, Model model) {
+		Prefecture prefecture = prefectureRepository.findById(id).orElse(null);
+		List<Hotel> hotels = hotelRepository.findByPrefectureId(id);
+		model.addAttribute("prefecture", prefecture);
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("title", "Show Prefecture");
+		return "prefecture/show";
+	}
 }
