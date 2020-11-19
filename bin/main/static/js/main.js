@@ -9,10 +9,10 @@ $(function() {
 	_window.on('scroll',function(){
 		imgBottom = $('.parallax-window').height();
 		if(_window.scrollTop() > imgBottom){
-			_navtop.addClass('transform');   
+			_navtop.addClass('transform');
 		}
 		else{
-			_navtop.removeClass('transform');   
+			_navtop.removeClass('transform');
 		}
 	});
 

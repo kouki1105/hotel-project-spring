@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Equipment {
@@ -14,13 +12,9 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Boolean parking;
-    private Boolean hotSpring;
-    private Boolean outdoorBath;
-    private Boolean wifi;
-
-    @OneToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+	private Boolean wifi;
+	private Boolean pool;
+	private Boolean noSmoking;
 
 	public long getId() {
 		return id;
@@ -38,22 +32,6 @@ public class Equipment {
 		this.parking = parking;
 	}
 
-	public Boolean getHotSpring() {
-		return hotSpring;
-	}
-
-	public void setHotSpring(Boolean hotSpring) {
-		this.hotSpring = hotSpring;
-	}
-
-	public Boolean getOutdoorBath() {
-		return outdoorBath;
-	}
-
-	public void setOutdoorBath(Boolean outdoorBath) {
-		this.outdoorBath = outdoorBath;
-	}
-
 	public Boolean getWifi() {
 		return wifi;
 	}
@@ -62,12 +40,20 @@ public class Equipment {
 		this.wifi = wifi;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
+	public Boolean getPool() {
+		return pool;
 	}
 
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
+	public void setPool(Boolean pool) {
+		this.pool = pool;
+	}
+
+	public Boolean getNoSmoking() {
+		return noSmoking;
+	}
+
+	public void setNoSmoking(Boolean noSmoking) {
+		this.noSmoking = noSmoking;
 	}
 
 }

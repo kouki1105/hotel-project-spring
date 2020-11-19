@@ -26,11 +26,12 @@ public class Hotel {
 	@JoinColumn(name = "prefecture_id")
 	private Prefecture prefecture;
 
-	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Photo photo;
+	@ManyToOne
+	@JoinColumn(name = "equipment_id")
+	private Equipment equipment;
 
 	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Equipment equipment;
+	private Photo photo;
 	
 	public long getId() {
 		return id;
@@ -73,6 +74,14 @@ public class Hotel {
 
 	public void setPrefecture(Prefecture prefecture) {
 		this.prefecture = prefecture;
+	}
+
+	public Equipment getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
 
 	// public Long getPrefectureId() {

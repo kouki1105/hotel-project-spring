@@ -29,6 +29,9 @@ h1::after {
 
 .navbar {
 	min-height: 100px;
+	position: fixed;
+	background-color: rgba(255, 255, 255, 1);
+	z-index: 2000;
 }
 
 .navbar-top {
@@ -42,6 +45,10 @@ h1::after {
 .navbar-top.transform {
 	background-color: rgba(255, 255, 255, 1);
 	min-height: 100px;
+}
+
+.content {
+	padding-top: 120px;
 }
 
 .top-slider-img {
@@ -61,4 +68,9 @@ h1::after {
 .parallax-window {
     min-height: 600px;
     background: transparent;
+}
+
+.sns-icon {
+	width: 30px;
+	height: 30px;
 }

@@ -1,7 +1,7 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
 		<h1><span th:text="*{hotel.name}"></span> のレビューを投稿する</h1>
-		<form th:action="@{/hotels/{hotel_id}/reviews/(hotel_id=*{hotel.id})}" th:method="post">
+		<form th:action="@{/hotels/{hotel_id}/reviews(hotel_id=*{hotel.id})}" th:method="post">
 			<div class="form-group">
 				<label class="control-label">名前</label>
 				<input class="form-control" type="text" name="name" />

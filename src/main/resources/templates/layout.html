@@ -33,9 +33,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 			</div>
 		</header>
 
-		<div class="container">
-			<div layout:fragment="contents">
-				<p>Default layout content</p>
+		<div class="content">
+			<div class="container">
+				<div layout:fragment="contents">
+					<p>Default layout content</p>
+				</div>
 			</div>
 		</div>
 
@@ -45,9 +47,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 
 		<footer class="mt-5 p-3 bg-light">
 			<div class="d-flex justify-content-around">
-				<a href=""><img th:src="@{/images/Twitter_Social_Icon_Rounded_Square_Color.png}" width="30" height="30" alt="twitterアイコン"></a>
-				<a href=""><img th:src="@{/images/f_logo_RGB-Blue_58.png}" width="30" height="30" alt="facebookアイコン"></a>
-				<a href=""><img th:src="@{/images/Instagram_AppIcon_Aug2017.png}" width="30" height="30" alt="instagramアイコン"></a>
+				<a href="#"><img th:src="@{/images/Twitter_Social_Icon_Rounded_Square_Color.png}" class="sns-icon" alt="twitterアイコン"></a>
+				<a href="#"><img th:src="@{/images/f_logo_RGB-Blue_58.png}" class="sns-icon" alt="facebookアイコン"></a>
+				<a href="#"><img th:src="@{/images/Instagram_AppIcon_Aug2017.png}" class="sns-icon" alt="instagramアイコン"></a>
 			</div>
 			<p class="text-center text-muted display-5 pt-3">Hotel Project</p>
 		</footer>
