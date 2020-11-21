@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Equipment {
@@ -15,6 +18,11 @@ public class Equipment {
 	private Boolean wifi;
 	private Boolean pool;
 	private Boolean noSmoking;
+
+	@OneToOne
+    @MapsId
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
 	public long getId() {
 		return id;

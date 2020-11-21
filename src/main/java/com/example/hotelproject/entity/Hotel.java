@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.cloudinary.Transformation;
 import com.example.hotelproject.config.Singleton;
@@ -26,9 +27,13 @@ public class Hotel {
 	@JoinColumn(name = "prefecture_id")
 	private Prefecture prefecture;
 
-	@ManyToOne
-	@JoinColumn(name = "equipment_id")
-	private Equipment equipment;
+	@OneToOne(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Equipment equipment;
+
+	// @ManyToOne
+	// @JoinColumn(name = "equipment_id")
+	// private Equipment equipment;
 
 	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Photo photo;
