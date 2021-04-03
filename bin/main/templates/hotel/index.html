@@ -26,6 +26,7 @@ xmlns:th	= "http://www.thymeleaf.org"
 					</ul>
 					<form class="form-inline" action="/hotels">
 						<input class="form-control mr-sm-2" type="text" name="name" placeholder="ホテル名">
+						<input class="form-control mr-sm-2" type="text" name="prefecture.name" placeholder="都道府県名">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
 					</form>
 				</div>
@@ -61,6 +62,101 @@ xmlns:th	= "http://www.thymeleaf.org"
 						<div class="card-body">
 							<h5 th:text="*{name}" class="card-title"></h5>
 							<p class="card-text">所在地：<span th:text="*{prefecture.name}"></span></p>
+							<div class="star-rating card-text">
+								<div th:if="*{getRatingAve() ge 1.00 && getRatingAve() lt 1.50}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 1.50 && getRatingAve() lt 2.00}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star-half-alt"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 2.00 && getRatingAve() lt 2.50}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 2.50 && getRatingAve() lt 3.00}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star-half-alt"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 3.00 && getRatingAve() lt 3.50}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 3.50 && getRatingAve() lt 4.00}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star-half-alt"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 4.00 && getRatingAve() lt 4.50}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="far fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() ge 4.50 && getRatingAve() lt 5.00}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star-half-alt"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() eq 5.00}">
+									<p>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+									</p>
+								</div>
+								<div th:if="*{getRatingAve() eq null}">
+									<p>null</p>
+								</div>
+							</div>
 							<p th:text="*{description}" class="card-text"></p>
 						</div>
 						<a class="btn btn-outline-info stretched-link" th:href="@{/hotels/{id}(id=*{id})}">ホテル詳細</a>

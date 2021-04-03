@@ -6,22 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@NotBlank
 	private String name;
 	private Double rating;
+	@NotBlank
 	private String body;
 	private Date createdAt;
 
 	@ManyToOne
-	@JoinColumn(name = "hotel_id")
 	private Hotel hotel;
 
 	public long getId() {

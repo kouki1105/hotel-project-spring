@@ -7,8 +7,16 @@
 				<input class="form-control" type="text" name="name" />
 			</div>
 			<div class="form-group">
-				<label class="control-label">評価</label><span class="ml-3 h5" id="rating">5</span>
-				<input class="custom-range" type="range" name="rating" min="0" max="10" id="customRange3" />
+				<label class="control-label">評価</label>
+				<!-- <span class="ml-3 h5" id="rating">5</span>
+				<input class="custom-range" type="range" name="rating" min="0" max="10" id="customRange3" /> -->
+				<div class="star-rating">
+					<input type="radio" name="rating" value="1.0" id="rating1"><label for="rating1"><i class="fa fa-star active"></i></label>
+					<input type="radio" name="rating" value="2.0" id="rating2"><label for="rating2"><i class="fa fa-star-o"></i></label>
+					<input type="radio" name="rating" value="3.0" id="rating3"><label for="rating3"><i class="fa fa-star-o"></i></label>
+					<input type="radio" name="rating" value="4.0" id="rating4"><label for="rating4"><i class="fa fa-star-o"></i></label>
+					<input type="radio" name="rating" value="5.0" id="rating5"><label for="rating5"><i class="fa fa-star-o"></i></label>
+				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label">本文</label>

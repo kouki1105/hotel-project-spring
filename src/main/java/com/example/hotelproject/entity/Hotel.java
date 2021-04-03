@@ -1,5 +1,7 @@
 package com.example.hotelproject.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -21,6 +24,7 @@ public class Hotel {
 	private long id;
 	private String name;
 	private String description;
+	private Double ratingAve;
 	// private Long prefecture_id;
 
 	@ManyToOne
@@ -31,9 +35,8 @@ public class Hotel {
     @PrimaryKeyJoinColumn
     private Equipment equipment;
 
-	// @ManyToOne
-	// @JoinColumn(name = "equipment_id")
-	// private Equipment equipment;
+	@OneToMany(mappedBy="hotel")
+    private List<Review> reviews;
 
 	@OneToOne(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Photo photo;
@@ -89,11 +92,17 @@ public class Hotel {
 		this.equipment = equipment;
 	}
 
-	// public Long getPrefectureId() {
-	// 	return prefecture_id;
-	// }
+	public Double getRatingAve() {
+		return ratingAve;
+	}
+	
+	public void setRatingAve(List<Review> reviews) {
+		Double sum = 0.0;
+		for (Review review : reviews) {
+			sum += review.getRating();
+		}
+		Double ave = sum/reviews.size();
+		this.ratingAve = ave;
+	}
 
-	// public void setPrefectureId(Long prefecture_id) {
-	// 	this.prefecture_id = prefecture_id;
-	// }
 }

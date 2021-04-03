@@ -10,6 +10,8 @@ import com.example.hotelproject.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,10 +48,16 @@ public class ReviewController {
 	}
 
 	@PostMapping
-	public String create(@PathVariable Long hotel_id, @ModelAttribute Review review) {
+	public String create(@PathVariable Long hotel_id, @ModelAttribute @Validated Review review, BindingResult bindingResult) {
 		Hotel hotel = hotelRepository.findById(hotel_id).orElse(null);
+		if (bindingResult.hasErrors()) {
+			return "review/new";
+		}
 		review.setHotel(hotel);
 		reviewRepository.save(review);
+		List<Review> reviews = reviewRepository.findByHotelId(hotel_id);
+		hotel.setRatingAve(reviews);
+		hotelRepository.save(hotel);
 		return "redirect:/hotels/{hotel_id}/reviews";
 	}
 

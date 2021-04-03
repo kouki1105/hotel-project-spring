@@ -17,6 +17,7 @@ import com.example.hotelproject.repository.PrefectureRepository;
 import com.example.hotelproject.repository.ReviewRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,8 @@ public class HotelController {
 
 	@GetMapping
 	public String index(Model model, @RequestParam(defaultValue = "") String name) {
-		List<Hotel> hotels = hotelRepository.findByNameContaining(name);
+		List<Hotel> hotels = hotelRepository.findByNameContaining(name, Sort.by(Sort.Direction.DESC, "ratingAve"));
+		// List<Hotel> hotels = hotelRepository.findByPrefectureNameContaining(name);
 		model.addAttribute("queryName", name);
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("title", "ホテル一覧");

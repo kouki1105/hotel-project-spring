@@ -74,3 +74,23 @@ h1::after {
 	width: 30px;
 	height: 30px;
 }
+
+.star-rating {
+	display: flex;
+}
+
+.star-rating input[type=radio] {
+	display: none;
+}
+
+.star-rating .fa {
+	font-size: 200%;
+	cursor: pointer;
+	display: block;
+	color: orange;
+}
+
+.star-rating .far,
+.star-rating .fas {
+	color: orange;
+}

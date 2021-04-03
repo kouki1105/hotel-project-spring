@@ -7,8 +7,102 @@
 					<img th:src="*{getPhotoUrl()}" class="w-100" />
 				</div>
 				<div class="col-md-7">
-					<!-- <p th:text="*{RatingAve()}" class="h4"></p> -->
-					<p class="h5">所在地：<span th:text="*{prefecture.name}"></span></p>
+					<div class="star-rating">
+						<div th:if="*{getRatingAve() ge 1.00 && getRatingAve() lt 1.50}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 1.50 && getRatingAve() lt 2.00}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 2.00 && getRatingAve() lt 2.50}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 2.50 && getRatingAve() lt 3.00}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 3.00 && getRatingAve() lt 3.50}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 3.50 && getRatingAve() lt 4.00}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 4.00 && getRatingAve() lt 4.50}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() ge 4.50 && getRatingAve() lt 5.00}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() eq 5.00}">
+							<p class="h4">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<span th:text="*{#numbers.formatDecimal(getRatingAve(), 1, 2)}"></span>
+							</p>
+						</div>
+						<div th:if="*{getRatingAve() eq null}">
+							<p>null</p>
+						</div>
+					</div>
+					<p class="h5 mt-2">所在地：<span th:text="*{prefecture.name}"></span></p>
 					<p th:text="*{description}" class="h4 mt-3"></p>
 					<div class="d-flex justify-content-start mt-4">
 						<p th:if="*{equipment.noSmoking}" class="badge badge-success mr-2 p-2"><i class="fas fa-smoking-ban"></i> 禁煙</p>
@@ -24,18 +118,25 @@
 				<p><a class="btn btn-outline-info" th:href="@{/hotels/{id}/reviews/new(id=*{id})}">レビューを投稿する</a></p>
 				<p><a class="btn btn-outline-info" href="/hotels">ホテル一覧</a></p>
 			</div>
+
 		</div>
 		<h2>最新のレビュー</h2>
 		<div class="row">
 			<div class="col-md-4 my-2" th:each="review:${reviews}" th:object="${review}">
 				<div class="card h-100">
 					<div class="card-header d-flex justify-content-between align-items-center">
-						<div><small>評価 : </small><span th:text="*{rating}" class="font-weight-bold"></span></div>
-						<small>投稿日 : <span th:text="*{#dates.format(createdAt, 'yyyy/MM/dd HH:mm')}"></span></small>
+						<div th:switch="*{rating}" class="star-rating">
+							<p th:case="1.0" class="my-auto"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> 1.0</p>
+							<p th:case="2.0" class="my-auto"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> 2.0</p>
+							<p th:case="3.0" class="my-auto"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> 3.0</p>
+							<p th:case="4.0" class="my-auto"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> 4.0</p>
+							<p th:case="5.0" class="my-auto"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</p>
+						</div>
+						<small th:text="*{#dates.format(createdAt, 'yyyy/MM/dd HH:mm')}"></small>
 					</div>
 					<div class="card-body">
-						<p class="card-title mb-2"><span th:text="*{name}"></span></p>
-						<p th:text="*{body}" class="card-text font-weight-bold"></p>
+						<h5 class="card-title mb-2"><span th:text="*{name}"></span></h5>
+						<p th:text="*{body}" class="card-text"></p>
 						<div class="text-right">
 							<a th:href="@{/hotels/{hotel_id}/reviews/{id}(hotel_id=*{hotel.id},id=*{id})}">詳細</a>
 						</div>
