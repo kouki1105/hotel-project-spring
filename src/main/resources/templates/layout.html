@@ -24,6 +24,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 					<ul class="navbar-nav ml-auto mr-sm-2">
 						<li class="nav-item"><a href="/" class="nav-link">トップページ</a></li>
 						<li class="nav-item"><a href="/contacts/new" class="nav-link">お問い合わせ</a></li>
+						<li class="nav-item"><a href="/prefectures" class="nav-link">都道府県から探す</a></li>
 					</ul>
 					<form class="form-inline" action="/hotels">
 						<input class="form-control mr-sm-2" type="text" name="name" placeholder="ホテル名">
@@ -40,8 +41,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 				</div>
 			</div>
 		</div>
-
-		<div style="height: 2000px;"></div>
 
 		<div id="pagetop"><i class="fas fa-chevron-circle-up fa-4x btn-pagetop"></i></div>
 
@@ -66,6 +65,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<script th:src="@{/js/parallax.min.js}"></script>
 		<script th:src="@{/js/jquery.japan-map.js}"></script>
+		<script th:src="@{/js/jmap.min.js}"></script>
 		<script th:src="@{/js/main.js}"></script>
 	</body>
 </html>

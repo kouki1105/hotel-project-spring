@@ -48,6 +48,35 @@ $(function(){
 });
 
 // prefecture
+$('#jmap').jmap({
+    width: '100%',
+    height: '450px',
+    lineColor: '#EFE4A6',
+    lineWidth: 2,
+    showTextShadow: true,
+    backgroundColor: '#6FCFDD',
+    backgroundRadius: '0.5rem',
+    backgroundPadding: '0.5rem',
+    dividerColor: '#EFE4A6',
+    showPrefectureName: true,
+    showRoundedPrefecture: true,
+    prefectureNameType: 'full',
+    prefectureBackgroundColor: '#62B34C',
+    prefectureBackgroundHoverColor: '#95A834',
+    prefectureLineColor: '#EFE4A6',
+    prefectureLineHoverColor: '#ffffff',
+    prefectureLineWidth: '2px',
+    prefectureLineGap: '0px',
+    prefectureInnerLineWidth: '1px',
+    prefectureInnerLineColor: '#EFE4A6',
+    prefectureInnerLineType: 'outset',
+    prefectureRadius: '15px',
+    prefectureLineY: '2px',
+    prefectureLineX: '2px',
+    fontSize: '0.6rem',
+    fontColor: '#fff'
+});
+
 $(function(){
 
 	var prefectureLinks = {};
@@ -76,7 +105,6 @@ $(function(){
 			drawsBoxLine : false,
 			movesIslands : true,
 			showsPrefectureName : true,
-			width: 800,
 			font : "MS Mincho",
 			fontSize : 12,
 			fontColor : "areaColor",
