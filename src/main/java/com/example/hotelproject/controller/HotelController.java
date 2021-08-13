@@ -45,9 +45,11 @@ public class HotelController {
 	@GetMapping
 	public String index(Model model, @RequestParam(defaultValue = "") String name) {
 		List<Hotel> hotels = hotelRepository.findByNameContaining(name, Sort.by(Sort.Direction.DESC, "ratingAve"));
+		List<Hotel> allHotels = hotelRepository.findAll();
 		// List<Hotel> hotels = hotelRepository.findByPrefectureNameContaining(name);
 		model.addAttribute("queryName", name);
 		model.addAttribute("hotels", hotels);
+		model.addAttribute("allHotels", allHotels);
 		model.addAttribute("title", "ホテル一覧");
 		return "hotel/index";
 	}

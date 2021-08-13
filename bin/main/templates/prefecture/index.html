@@ -1,11 +1,5 @@
 <div layout:decorate="layout">
 	<div layout:fragment="contents">
 		<div id="jmap"></div>
-		<!-- <div id="map-container" class="mx-auto"></div> -->
-
-
-		<div th:each="prefecture:${prefectures}" th:object="${prefecture}">
-			<a th:text="*{name}" th:href="@{/prefectures/{id}(id=*{id})}"></a>
-		</div>
 	</div>
 </div>
